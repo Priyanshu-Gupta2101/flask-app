@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="root">
+        <h1>Admin Panel</h1>
+        <form action='/admin' method='POST'>
+          <input
+            type="text"
+            id="new_Word"
+            name="new_Word"
+            onChange={handleInputChange}
+          />
+          <button type="submit">Update Word</button>
+        </form>
+      </div>
+    </div>
+</body>
+</html>

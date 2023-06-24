@@ -1,0 +1,3 @@
+flaskapp/.env
+flaskapp/__pycache__/
+virt/
