@@ -12,4 +12,4 @@ def connect():
         port=os.getenv("PORT")
     )
 
-    return [conn, conn.cursor()]
+    return conn

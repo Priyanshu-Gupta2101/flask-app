@@ -1,17 +1,17 @@
-from flask import Blueprint, request, render_template, redirect
-import mysql.connector
+from flask import Flask, request, render_template, redirect
 from .models import connect
+from .__init__ import create_app
 
-conn = connect()[0]
-cursor = connect()[1]
+app = create_app()
 
-main = Blueprint("main", __name__)
+conn = connect()
+cursor = conn.cursor()
 
-@main.route('/')
+@app.route('/')
 def main():
     return render_template('index.html')
 
-@main.route('/api/word', methods=['GET'])
+@app.route('/api/word', methods=['GET'])
 def get_word():
     query = "SELECT word FROM words"
     cursor.execute(query)
@@ -19,7 +19,7 @@ def get_word():
     word = result[0] if result else None
     return word
 
-@main.route('/admin', methods=['GET','POST'])
+@app.route('/admin', methods=['GET','POST'])
 def admin():
     if request.method == 'POST':
         new_word = request.form['new_Word']
@@ -28,3 +28,6 @@ def admin():
         conn.commit()
         return redirect('/admin')
     return render_template('admin.html')
+
+if __name__ == "__main__":
+    app.run(debug=False)
