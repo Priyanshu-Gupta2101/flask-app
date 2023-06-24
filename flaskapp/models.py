@@ -8,8 +8,7 @@ def connect():
         host=os.getenv("HOST"),
         user=os.getenv("USER"),
         password=os.getenv('PASSWORD'),
-        database=os.getenv("DB"),
-        port=os.getenv("PORT")
+        database=os.getenv("DB")
     )
 
     return conn
